@@ -1156,13 +1156,13 @@ fi
 #grep "^ *-a always,exit .* privileged$" /etc/audit/audit.rules || echo "-a always,exit -F path=/usr/bin/sudoedit -F auid>=1000 -F auid!=-1 -k privileged" >> /etc/audit/audit.rules
 
 # Ensure successful file system mounts are collected
-:'grep "^ *-a always,exit .* mounts$" /etc/audit/audit.rules || echo "-a always,exit -F arch=b64 -S mount -F auid>=1000 -F auid!=-1 -k mounts" >> /etc/audit/audit.rules
-grep "^ *-a always,exit .* mounts$" /etc/audit/audit.rules || echo "-a always,exit -F arch=b32 -S mount -F auid>=1000 -F auid!=-1 -k mounts" >> /etc/audit/audit.rules
+#grep "^ *-a always,exit .* mounts$" /etc/audit/audit.rules || echo "-a always,exit -F arch=b64 -S mount -F auid>=1000 -F auid!=-1 -k mounts" >> /etc/audit/audit.rules
+#grep "^ *-a always,exit .* mounts$" /etc/audit/audit.rules || echo "-a always,exit -F arch=b32 -S mount -F auid>=1000 -F auid!=-1 -k mounts" >> /etc/audit/audit.rules
 
 # Ensure file deletion events by users are collected
-grep "^ *-a always,exit .* delete$" /etc/audit/audit.rules || echo "-a always,exit -F arch=b64 -S unlink,unlinkat,rename,renameat -F auid>=1000 -F auid!=-1 -k delete" >> /etc/audit/audit.rules
-grep "^ *-a always,exit .* delete$" /etc/audit/audit.rules || echo "-a always,exit -F arch=b32 -S unlink,unlinkat,rename,renameat -F auid>=1000 -F auid!=-1 -k delete" >> /etc/audit/audit.rules
-'
+#grep "^ *-a always,exit .* delete$" /etc/audit/audit.rules || echo "-a always,exit -F arch=b64 -S unlink,unlinkat,rename,renameat -F auid>=1000 -F auid!=-1 -k delete" >> /etc/audit/audit.rules
+#grep "^ *-a always,exit .* delete$" /etc/audit/audit.rules || echo "-a always,exit -F arch=b32 -S unlink,unlinkat,rename,renameat -F auid>=1000 -F auid!=-1 -k delete" >> /etc/audit/audit.rules
+
 
 # Ensure changes to system administration scope (sudoers) is collected
 if [[ $(grep "^-a always,exit -F path=/etc/sudoers -F perm=wa -F auid>=1000 -F auid!=4294967295 -k privileged-priv_change$" /etc/audit/rules.d/*.rules) ]]; then
